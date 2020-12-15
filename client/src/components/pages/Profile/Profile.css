@@ -1,0 +1,13 @@
+.all-btns{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn{
+     margin-right: 10px;
+}
+
+
+.second-btn {
+    margin-right: 10px;
+}

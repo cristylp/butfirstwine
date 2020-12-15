@@ -1,0 +1,18 @@
+.wine-card {
+   margin-bottom: 40px;
+}
+
+.wine-card img {
+    background-color: #dfd1d2;
+    height: 400px;
+    object-fit: cover;
+}
+
+.title {
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.new-wine-btn {
+    margin-bottom: 20px;
+}
