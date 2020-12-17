@@ -17,7 +17,7 @@ class authService {
     logout = () => this.apiHandler.post('/logout')
     isLoggedIn = () => this.apiHandler.get('/loggedin')
     editUser = (credentials, userId) => this.apiHandler.put(`/editUser/${userId}`, credentials) 
-    // favorites = () => this.apiHandler.get('/favorites')        // REVISAR
+    favorites = (userId, wineId) => this.apiHandler.post(`/addFavorites/${wineId}`, userId) 
     
 }
 

@@ -45,6 +45,11 @@ class Profile extends Component {
                             {this.state.user.reviews.map(elm => elm.wine && <UserReviews key={elm._id} {...elm} />)} 
                         </Col>
                     </Row>
+                    <>
+                        <Row>
+                            <hr />
+                        </Row>
+                    </>
                 </Container>
                 <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered show={this.state.showEditModal} onHide={() => this.handleEditModal(false)}>
                     <Modal.Body>

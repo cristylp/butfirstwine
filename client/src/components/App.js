@@ -57,14 +57,12 @@ render() {
             <Route path='/wines' exact render={() => <WinesList storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />} />  
             <Route path='/wines/edit-wine' exact render={props => <EditWineForm {...props} />} />
             <Route path='/wines/create' render={props => <WineForm loggedUser={this.state.loggedInUser} {...props} />} /> 
-            <Route path='/wines/:wine_id' exact render={props => <WineDetails loggedUser={this.state.loggedInUser} {...props} />} /> 
+            <Route path='/wines/:wine_id' exact render={props => <WineDetails storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} {...props} />} /> 
             <Route path='/signup' render={props => <Signup storeUser={this.setTheUser} {...props} />} /> 
             <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} /> 
             <Route path='/profile' render={props => this.state.loggedInUser ? <Profile storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} {...props} /> : <Redirect to='/login' />} /> 
             <Route path='/edit-user' render={props => <UserForm {...props} />} />
             <Route path='/review/rate' render={props => <ReviewForm loggedUser={this.state.loggedInUser} {...props} />} /> 
-
-  
           </Switch>
         </main>
 

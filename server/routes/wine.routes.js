@@ -29,6 +29,7 @@ router.get('/getOneWine/:wine_id', (req, res) => {
     Wine
         .findById(req.params.wine_id)
         .populate({ path: 'reviews', populate: { path: 'user' } })
+        .populate('favorites')  
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -63,6 +64,7 @@ router.put('/editWine/:wine_id', (req, res) => {
     Wine 
         .findByIdAndUpdate(req.params.wine_id, req.body, { new: true })
         .populate({ path: 'reviews', populate: { path: 'user' } })
+        .populate('favorites')  
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -79,7 +81,6 @@ router.delete('/deleteWine/:wine_id', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
-
 
 
 

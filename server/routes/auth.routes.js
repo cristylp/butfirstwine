@@ -75,6 +75,21 @@ router.get('/loggedin', (req, res) => req.isAuthenticated() ? res.status(200).js
 
 
 
+
+router.post('/addFavorites/:wine_id', (req, res) => {
+    console.log(req.body)
+
+    const { user_id } = req.body
+
+    User
+        .findByIdAndUpdate(user_id, { $push: { favorites: req.params.wine_id } }, { new: true })
+        .populate({ path: 'reviews', populate: { path: 'wine' } })
+        .populate('favorites')  
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
+})
+
+
 // EDIT USER -- funcionando en POSTMAN
 router.put('/editUser/:user_id', (req, res) => {
 
@@ -87,21 +102,13 @@ router.put('/editUser/:user_id', (req, res) => {
     User
         .findByIdAndUpdate(req.params.user_id, { username, password: hashPass }, { new: true })
         .populate({ path: 'reviews', populate: { path: 'wine' } })
+        .populate('favorites')
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
 
 
 
-// // USER FAVORITES -- falta por probar en POSTMAN
-// router.put('/favorites/:wine_id,' (req, res) => {
-
-//     User
-//         .findByIdAndUpdate(req.user._id)
-//         .populate('favorites')    // revisar esto
-//         .then(response => res.json(response))
-//         .catch(err => console.log(err))
-// })
 
 
 module.exports = router

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import wineService from './../../../service/wines.service'
+import authService from './../../../service/auth.service'
 import Loader from './../../shared/Loader'
 import './Wine-details.css'
 
@@ -21,6 +22,7 @@ class WineDetails extends Component {
             showEditModal: false
         }
         this.WineService = new wineService()
+        this.AuthService = new authService()
         
     }
 
@@ -45,6 +47,17 @@ class WineDetails extends Component {
                 console.log(res)
                 this.props.history.push('/wines') 
              })
+            .catch(err => console.log(err))
+    }
+
+    addToFavorites = () => {
+
+        this.AuthService
+            .favorites({ user_id: this.props.loggedUser._id }, this.state.wine._id)
+            .then(res => {
+                this.props.storeUser(res.data)
+                this.props.history.push('/profile')
+            })
             .catch(err => console.log(err))
     }
 
@@ -82,10 +95,16 @@ class WineDetails extends Component {
                                 <hr />
                                 <ButtonGroup aria-label='Basic example' className='edit-btn'>
                                     <Link className='btn btn-back btn-sm' to='/wines'>Back to wines</Link>
-                                    <Button className='btn btn-fav btn-sm'>Add to favorites</Button>
-                                    {this.state.wine.owner === this.props.loggedUser._id && <Button className='btn btn-edit btn-sm' onClick={() => this.handleEditModal(true)}>Edit wine</Button>}
-                                    {this.state.wine.owner === this.props.loggedUser._id && <Button className='btn btn-delete btn-sm'  onClick={this.deleteWine}>Delete wine</Button>}
-                                </ButtonGroup>
+                                    <Button className='btn btn-fav btn-sm' onClick={this.addToFavorites} >Add to favorites</Button>
+                                    {
+                                        this.props.loggedUser &&
+                                        this.state.wine.owner === this.props.loggedUser._id && 
+                                    <>
+                                        <Button className='btn btn-edit btn-sm' onClick={() => this.handleEditModal(true)}>Edit wine</Button>
+                                        <Button className='btn btn-delete btn-sm'  onClick={this.deleteWine}>Delete wine</Button>
+                                    </>
+                                    }
+                                 </ButtonGroup> 
                             </Col>
                             <Col md={2} sm={4}></Col>
                             <Col md={4} sm={3}>

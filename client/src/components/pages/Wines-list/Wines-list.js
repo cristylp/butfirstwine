@@ -73,9 +73,14 @@ class WinesList extends Component {
                         </Form>
 
                         {this.props.loggedUser && <Link className='add-new btn btn-fav' to='/wines/create'>Add a new wine</Link>}
-                        <Row>
+                        <Row className='winecard-div'>
                             {this.state.wines.map(elm => <WinesCard key={elm._id} {...elm} storeUser={this.props.storeUser} loggedUser={this.props.loggedUser} />)}
                         </Row>
+                        <>
+                            <Row>
+                                <hr />
+                            </Row>
+                        </>
                     </>
                     :
                     <Loader />

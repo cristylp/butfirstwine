@@ -115,6 +115,11 @@ class WineForm extends Component {
 
                     </Col>
                 </Row>
+                <>
+                    <Row>
+                        <hr />
+                    </Row>
+                </>
             </Container>
         )
     }

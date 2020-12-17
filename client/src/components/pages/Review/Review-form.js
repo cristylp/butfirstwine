@@ -15,11 +15,8 @@ class ReviewForm extends Component {
             user: this.props.loggedUser._id,
             wine: this.props.wineId
         }
-
-        // console.log(this.props)
-
         this.ReviewService = new reviewService()
-        // console.log(this.ReviewService)
+
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -30,7 +27,6 @@ class ReviewForm extends Component {
         this.ReviewService
             .saveReview(this.state)
             .then(res => this.props.storeUser(res.data[0]))
-            // find by id & update?? user and wine.... 
             .catch(err => console.log(err))
     }
 

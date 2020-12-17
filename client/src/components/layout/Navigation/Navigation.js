@@ -26,7 +26,7 @@ class Navigation extends Component  {
 
         return (
             <>
-            <Navbar className='color-navbar' variant='light' expand='lg'>
+                <Navbar sticky="top" className='color-navbar' variant='light' expand='lg'>
                 <Link to='/'>
                     <Navbar.Brand href='/'><img alt='butfirst.wine_ logo' src={logo} width='37' height='37' className='logo d-inline-block align-top' />butfirst.Wine_</Navbar.Brand>
                 </Link>

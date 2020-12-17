@@ -1,11 +1,11 @@
 footer {
-    background: #343a40;
-    color: white;
+    background: #E4BEAA;
+    color: black;
     font-size: 10px;
     text-align: center;
     position: fixed;
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     bottom: 0;
     margin-top: 60px;
 }
