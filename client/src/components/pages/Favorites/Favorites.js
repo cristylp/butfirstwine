@@ -1,42 +1,31 @@
-import React, { Component } from 'react'
-import authService from './../../../service/auth.service'
-
-
-class Favorites extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            user: this.props.loggedUser._id,
-            wine: this.props.wineId
-        }
-        this.AuthService = new authService()
-
-
-    }
-
-
-    Favorites = () => {
-    
-        const wine_id = this.props.match.params.wine_id
-    
-        this.WineService
-            .favorites(wine_id)
-            .then(res => {console.log(res)
-            this.props.history.push('/favorites')
-            })
-            .catch(err => console.log(err))
-    }
+import React from 'react'
+import { Col, Card } from 'react-bootstrap'
 
 
 
-    render() {
 
-        return (
-            <h1>PRUEBA</h1>
-            
-        )
-    }
+const Favorites = ({ name, varietal, imageUrl }) => {
+
+    return (
+
+        <>
+        <h4>{name}</h4>
+            <p>{varietal}</p>
+            </>
+
+        // <>
+        //     <Col md={{ span: 8, offset: 2 }}>
+        //         <Card className='favorite-card' style={{ width: '100%' }}>
+        //             <Card.Body>
+        //                 <Card.Title>{wine.name}</Card.Title>
+        //                 <hr />
+        //             </Card.Body>
+        //         </Card>
+        //     </Col>
+        // </>
+
+    )
+
 }
 
 

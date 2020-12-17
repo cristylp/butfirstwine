@@ -18,6 +18,7 @@ module.exports = app => {
     passport.deserializeUser((id, next) => {
         User.findById(id)
             .populate({ path: 'reviews', populate: { path: 'wine' } })
+            .populate('favorites')
             .then(theUser => next(null, theUser))
             .catch(err => next(err))
     })
@@ -26,7 +27,8 @@ module.exports = app => {
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
         User.findOne({ username })
-            .populate({path: 'reviews', populate: {path: 'wine'}})
+            .populate({ path: 'reviews', populate: { path: 'wine' } })
+            .populate('favorites')
             .then(user => {
                 if (!user) {
                     return next(null, false, { message: "Wrong username" })

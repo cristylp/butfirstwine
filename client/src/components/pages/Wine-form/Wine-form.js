@@ -48,9 +48,6 @@ class WineForm extends Component {
 
         const uploadData = new FormData()
         uploadData.append('imageUrl', e.target.files[0])
-        // console.log('ESTO ES UNA IMAGEN EN MEMORIA:', e.target.files[0])
-
-        // this.setState({ uploadingActive: true })
 
         this.FilesService
             .uploadImage(uploadData)

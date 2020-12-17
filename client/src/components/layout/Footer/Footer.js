@@ -1,12 +1,20 @@
 import './Footer.css'
+import { Link } from 'react-router-dom'
+import mykonos from "./mykonos.png"
+
 
 const Footer = () => {
 
     return (
-        
+
         <>
-            <footer style={{ marginTop: '40px' }}>&copy; 2020 Copyright: butfirst.Wine_</footer>
-            <a target="_blank" href='https://www.instagram.com/butfirst.wine_/'>Follow us!</a>
+            <footer>
+                {/* <Link to='https://www.instagram.com/butfirst.wine_/'>
+                    <img src="https://e7.pngegg.com/pngimages/340/745/png-clipart-computer-icons-white-instagram-icon-text-logo.png" alt="new" />
+                </Link> */}
+                &copy; 2020 Copyright: butfirst.Wine_
+            </footer>
+
         </>
 
     )
