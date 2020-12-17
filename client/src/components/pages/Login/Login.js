@@ -28,7 +28,8 @@ class Login extends Component {
 
         this.AuthService
             .login(this.state.formInfo)
-            .then(theLoggedInUser => {                                // Errores de usuario se ven en Network
+            .then(theLoggedInUser => {
+                console.log(theLoggedInUser)                            // Errores de usuario se ven en Network
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/profile')                   // Forma para redirigir
             })   

@@ -4,6 +4,7 @@ module.exports = app => {
     app.use('/api/wine', require('./wine.routes.js'))
     app.use('/api', require('./auth.routes.js'))
     app.use('/api/review', require('./review.routes.js'))
+    app.use('/api/files', require('./files.routes.js'))
 
     
 }

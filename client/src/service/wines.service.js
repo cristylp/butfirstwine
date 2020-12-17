@@ -15,7 +15,7 @@ class wineService {
     getWines = () => this.apiHandler.get('/getAllWines')
     getWine = wineId => this.apiHandler.get(`/getOneWine/${wineId}`)
     saveWine = wineInfo => this.apiHandler.post('/newWine', wineInfo)
-    editWine = wineId => this.apiHandler.put(`/editWine/${wineId}`)             
+    editWine = (wineInfo, wineId) => this.apiHandler.put(`/editWine/${wineId}`, wineInfo)             
     deleteWine = wineId => this.apiHandler.delete(`/deleteWine/${wineId}`)        
     filterWine = varietal => this.apiHandler.get(`/filter/${varietal}`)
 }

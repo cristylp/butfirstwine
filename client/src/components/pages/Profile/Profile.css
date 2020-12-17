@@ -11,3 +11,34 @@
 .second-btn {
     margin-right: 10px;
 }
+
+.ratings-text {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.profile {
+   text-align: center;  
+}
+
+.btn-edit {
+    background-color: #FEA97C;
+    border: none;
+    color: white
+}
+
+.btn-edit:hover {
+  background-color: #F7D5CC;
+  border:  none;
+}
+
+.btn-fav {
+    background-color: #E4BEAA;
+    border: none;
+    color: white
+}
+
+.btn-fav:hover {
+  background-color: #F7D5CC;
+  border:  none;
+}

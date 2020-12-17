@@ -26,6 +26,7 @@ class UserForm extends Component {
 
         this.AuthService
             .editUser(this.state, this.props.loggedUser._id)
+            // .then(res => this.setState({ username: res.data.username, password: res.data.password, profileImg: res.data.profileImg }))
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }

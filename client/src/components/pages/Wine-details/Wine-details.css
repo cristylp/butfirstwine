@@ -1,7 +1,65 @@
+.details-header {
+    text-align: center;
+}
+
 .wine-details img {
-    width: 100%;
+    width: 30%;
+    height: auto
 }
 
 .fav-btn {
     margin-right: 10px;
+}
+
+.wine-img {
+    padding-top: 80px;
+}
+
+.ratings {
+    margin-bottom: 20px;
+}
+
+.btn-delete {
+    background-color: #d92d01;
+    border: none;
+    color: white;
+}
+
+.btn-delete:hover {
+  background-color: #F7D5CC;
+  border:  none;
+}
+
+.btn-edit {
+    background-color: #FEA97C;
+    border: none;
+    color: white
+}
+
+.btn-edit:hover {
+  background-color: #F7D5CC;
+  border:  none;
+}
+
+.btn-back {
+    background-color: #E4B4B4;
+    border: none;
+    color: white
+}
+
+.btn-back:hover {
+  background-color: #F7D5CC;
+  border: none;
+  color: white;
+}
+
+.btn-fav {
+    background-color: #E4BEAA;
+    border: none;
+    color: white
+}
+
+.btn-fav:hover {
+  background-color: #F7D5CC;
+  border:  none;
 }

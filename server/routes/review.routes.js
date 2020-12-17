@@ -25,7 +25,7 @@ router.post('/createReview', (req, res) => {
     Review
         .create({ user, wine, rating, description })
         .then(response => {
-            const userPromise = User.findByIdAndUpdate(user, { $push: { reviews: response._id } }, { new: true }).populate('reviews')
+            const userPromise = User.findByIdAndUpdate(user, { $push: { reviews: response._id } }, { new: true }).populate({ path: 'reviews', populate: { path: 'wine' } })
             const winePromise = Wine.findByIdAndUpdate(wine, { $push: { reviews: response._id } }, { new: true })
             return Promise.all([userPromise, winePromise])
         })

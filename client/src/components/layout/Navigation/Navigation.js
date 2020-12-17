@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import logo from './logo.png'
+import './Navigation.css'
 
 import authService from './../../../service/auth.service'
 
@@ -25,9 +26,9 @@ class Navigation extends Component  {
 
         return (
             <>
-            <Navbar bg='dark' variant='dark' expand='lg' style={{marginBottom: '40px'}}>
+            <Navbar className='color-navbar' variant='light' expand='lg'>
                 <Link to='/'>
-                    <Navbar.Brand href='/'><img alt='butfirst.wine_ logo' src={logo} width='30' height='30' className='d-inline-block align-top' />butfirst.wine_</Navbar.Brand>
+                    <Navbar.Brand href='/'><img alt='butfirst.wine_ logo' src={logo} width='37' height='37' className='logo d-inline-block align-top' />butfirst.Wine_</Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
@@ -38,9 +39,9 @@ class Navigation extends Component  {
                         <Link to='/wines'>
                             <Nav.Link as='div'>Wines</Nav.Link>
                         </Link>
-                        <Link to='/'>
+                        {/* <Link to='/'>
                             <Nav.Link as='div'>Articles</Nav.Link>
-                        </Link>
+                        </Link> */}
                         {
                             this.props.loggedUser
                                 ?

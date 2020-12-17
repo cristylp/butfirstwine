@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import wineService from './../../../service/wines.service'
+import filesService from './../../../service/upload.service'
 import './Wine-form.css'
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
@@ -22,15 +23,17 @@ class WineForm extends Component {
             imageUrl: '',
             owner: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
-
-        // console.log(this.props)
-
         this.WineService = new wineService()
         // console.log(this.WineService)
+        this.FilesService = new filesService()
+
     }
+
+
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
     
+
     handleSubmit = e => {
         e.preventDefault()
 
@@ -39,6 +42,22 @@ class WineForm extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
+
+
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+        // console.log('ESTO ES UNA IMAGEN EN MEMORIA:', e.target.files[0])
+
+        // this.setState({ uploadingActive: true })
+
+        this.FilesService
+            .uploadImage(uploadData)
+            .then(response => this.setState({ imageUrl: response.data.secure_url }))
+            .catch(err => console.log(err))
+    }
+
 
 
     render() {
@@ -80,14 +99,13 @@ class WineForm extends Component {
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control size="sm" type='number' name='price' value={this.state.price} onChange={this.handleInputChange} placeholder="$" />
                             </Form.Group>
-                            <Form.Group controlId='description'>
+                            <Form.Group controlId='description.ControlTextarea1'>
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="Add a description" />
+                                <Form.Control as='textarea' rows={3} size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="Add a description" />
                             </Form.Group>
-                            <Form.Group controlId='imageUrl'>
-                                <Form.Group>
-                                    <Form.File id="exampleFormControlFile1" label="Image" name='imageUrl' value={this.state.imageUrl} onChange={this.handleInputChange}/>
-                                </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Select image</Form.Label>
+                                <Form.Control type="file" onChange={this.handleImageUpload} />
                             </Form.Group >
                             <div className='buttons'>
                             <Button className='form-btn' variant='dark' type='submit'>Save</Button>

@@ -47,11 +47,11 @@ class ReviewForm extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId='rating'>
                                 <Form.Label>Rating</Form.Label>
-                                <Form.Control size="sm" type='number' name='rating' value={this.state.rating} onChange={this.handleInputChange} placeholder="Rate from 1-5" />
+                                <Form.Control size="sm" type='number' name='rating' value={this.state.rating} onChange={this.handleInputChange} placeholder="*Rate from 1-5" />
                             </Form.Group>
-                            <Form.Group controlId='description'>
+                            <Form.Group controlId='description.ControlTextarea1'>
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="Add a description" />
+                                <Form.Control as='textarea' rows={3} size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="Add a description" />
                             </Form.Group>
                             <div className='buttons'>
                                 <Button className='form-btn' variant='dark' type='submit'>Save</Button>

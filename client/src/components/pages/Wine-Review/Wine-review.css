@@ -1,0 +1,18 @@
+/* .card {
+    margin-bottom: 20px;
+}
+
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+} */
+
+.review-card {
+  background-color: #FAF9F9;
+}
+
+.description-text{
+  font-weight: 100;
+  font-style: italic;
+}

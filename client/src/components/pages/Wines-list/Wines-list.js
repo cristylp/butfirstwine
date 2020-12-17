@@ -22,14 +22,18 @@ class WinesList extends Component {
     }
 
     wineFilterOnChange = e => {
-        this.WineService
-            .filterWine(e.target.value)
-            .then(res => this.setState({ wines: res.data }))
-            .catch(err => console.log(err))
+        if (e.target.value === 'All') this.getAllWines()
+        else {
+            this.WineService
+                .filterWine(e.target.value)
+                .then(res => this.setState({ wines: res.data }))
+                .catch(err => console.log(err))    
+        }
     }
 
-    componentDidMount = () => {
-        console.log(this.props)
+    componentDidMount = () => this.getAllWines()
+
+    getAllWines = () => {
 
         this.WineService
             .getWines()
@@ -42,13 +46,9 @@ class WinesList extends Component {
 
     render() {
 
-        const filteredWines = this.state.wines.filter(wine => {
-            return wine.varietal.toLowerCase().includes(this.state.inputValue.toLocaleLowerCase)
-        })
-
         return (
             <Container>
-                {this.state.wines
+                {this.state.wines.length
                     ?
                     <>
                         <h1 className='title'>Wines from around the world</h1>
@@ -58,21 +58,21 @@ class WinesList extends Component {
                             <Row>
                                 <Col md='3'>
                                     <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>Filter by color</Form.Label>
                                         <Form.Control as="select" onChange={this.wineFilterOnChange}>
-                                            <option>Filter by color</option>
-                                            <option>Red</option>
-                                            <option>White</option>
-                                            <option>Rose</option>
-                                            <option>Sweet</option>
-                                            <option>Sparkling</option>
-                                            {/* <option>View All</option>      */}       {/* COMO HACER PARA QUE SE MUESTREN NUEVAMENTE TODOS LOS VINOS      */}
+                                            <option value='All'>View All</option>          
+                                            <option value='Red'>Red</option>
+                                            <option value='White'>White</option>
+                                            <option value='Rose'>Rose</option>
+                                            <option value='Sweet'>Sweet</option>
+                                            <option value='Sparkling'>Sparkling</option>
                                         </Form.Control>
                                     </Form.Group>
                                 </Col>
                             </Row>
                         </Form>
 
-                        {this.props.loggedUser && <Link className='new-wine-btn btn btn-dark btn-sm' to='/wines/create'>Add a new wine</Link>}
+                        {this.props.loggedUser && <Link className='add-new btn btn-fav' to='/wines/create'>Add a new wine</Link>}
                         <Row>
                             {this.state.wines.map(elm => <WinesCard key={elm._id} {...elm} storeUser={this.props.storeUser} loggedUser={this.props.loggedUser} />)}
                         </Row>

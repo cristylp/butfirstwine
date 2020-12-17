@@ -15,12 +15,10 @@ class EditWineForm extends Component {
             price: '',
             winery: '',
             description: '',
-            // wine: this.state.wine
+            wine: undefined
         }
-        // console.log(this.props)
 
         this.WineService = new wineService()
-        // console.log(this.WineService)
     }
 
 
@@ -31,15 +29,15 @@ class EditWineForm extends Component {
         e.preventDefault()
         
         this.WineService
-        .editWine(this.state, this.props.wine._id)
-        .then(res => console.log(res))
+        .editWine(this.state, this.props.wineId)
+        .then(res => this.props.updateWine(res.data))
         .catch(err => console.log(err))
     }
     
     componentDidMount = () => {
         this.WineService
             .getWine(this.props.wineId)
-            .then(res => this.setState({ name: res.data.name }))    // rellenar con el state.
+            .then(res => this.setState({ name: res.data.name, varietal: res.data.varietal, country: res.data.country, price: res.data.price, winery: res.data.winery, description: res.data.description }))  
             .catch(err => console.log(err))
     }
 
@@ -79,7 +77,14 @@ class EditWineForm extends Component {
                                 </Form.Group>
                                 <Form.Group controlId='description'>
                                     <Form.Label>Description</Form.Label>
-                                    <Form.Control size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="*****" />
+                                <Form.Control size="sm" type='text' name='description' value={this.state.description} onChange={this.handleInputChange} placeholder="*****" />
+                                
+                                <Form.Group controlId='imageUrl'>
+                                    <Form.Group>
+                                        <Form.File id="exampleFormControlFile1" label="Image" name='imageUrl' value={this.state.imageUrl} onChange={this.handleInputChange} />
+                                    </Form.Group>
+                                </Form.Group >
+
                                 </Form.Group>
                                 <Button className='form-btn' variant='dark' type='submit'>Save</Button>
                             </Form>

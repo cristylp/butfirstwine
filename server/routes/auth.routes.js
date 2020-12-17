@@ -86,26 +86,22 @@ router.put('/editUser/:user_id', (req, res) => {
 
     User
         .findByIdAndUpdate(req.params.user_id, { username, password: hashPass }, { new: true })
-        .populate('reviews')
+        .populate({ path: 'reviews', populate: { path: 'wine' } })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
 
 
 
-// USER FAVORITES -- falta por probar en POSTMAN
-router.get('/favorites', (req, res) => {
+// // USER FAVORITES -- falta por probar en POSTMAN
+// router.put('/favorites/:wine_id,' (req, res) => {
 
-    User
-        .findById(req.user._id)
-        .populate('favorites')    // revisar esto
-        // .then(theUser => {
-        //     res.render('/favorites', theUser)
-        // })
-        .then(response => res.json(response))
-        .catch(err => console.log(err))
-
-})
+//     User
+//         .findByIdAndUpdate(req.user._id)
+//         .populate('favorites')    // revisar esto
+//         .then(response => res.json(response))
+//         .catch(err => console.log(err))
+// })
 
 
 module.exports = router
